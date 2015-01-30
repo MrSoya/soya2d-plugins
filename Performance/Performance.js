@@ -118,8 +118,13 @@
 	};
 
 	soya2d.module.install('performance', {
+		onInit: function(game) {
+			game.performance = new Performance(game);
+		},
+		onStart: function(game) {
+			game.performance.init();
+		},
 		onSceneChange: function(game, scene) {
-			game.performance = game.performance || new Performance(game);
 			game.performance.init();
 		},
 		onBeforeUpdate: function(game, now, d) {
