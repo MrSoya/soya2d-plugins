@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="http://soya2d.com/assets/js/soya2d.all.min.js"></script>
+	<script src="HTMLText.js" type="text/javascript" language='javascript'></script>
+	<script src="HTMLTextManager.js" type="text/javascript" language='javascript'></script>
+	<script src="install.js" type="text/javascript" language='javascript'></script>
+	<style>
+		.txt{
+			border:1px solid red;
+			font-size: 2em;
+		}
+	</style>
+</head>
+    <body>
+    	<script>
+			var scene = new soya2d.Scene({
+				onInit:function(game){
+					var i=0;
+					var txt = new soya2d.HTMLText({
+						text:'这是一段<b>富</b>文本<br/><kbd>内容</kbd>，<i>你</i><u>可</u><small>以</small>随意插入<sup>HTML</sup><code>代码</code>',
+						className:'txt',
+						x:game.w/2 - 50,
+						y:game.h/2 - 50,
+						w:100,
+						h:100,
+						//originX:0,
+						//originY:0,
+						onUpdate:function(){
+							var seed = soya2d.Math.SINTABLE[i];
+							//this.rotation+=seed;
+							//this.scaleTo(seed,-seed);
+							this.skewTo(seed*10,seed*10);
+							i++;
+				            i = i % 360;
+						}
+					});
+					this.add(txt);
+				}
+			});
+
+			var game = new soya2d.Game({
+				h:500
+			});
+			game.start(scene);
+		</script>
+    </body>
+</html>
